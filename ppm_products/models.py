@@ -12,7 +12,7 @@ class Customer(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, null=True)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
@@ -64,7 +64,7 @@ class OrderItem(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.id)
+        return "Order # " + str(self.order)
 
     @property
     def get_total(self):

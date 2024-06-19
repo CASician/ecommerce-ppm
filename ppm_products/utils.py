@@ -40,10 +40,10 @@ def cookieCart(request):
         except:
             pass
 
-    return {"cartItems": cartItems, "order":order, "items": items}
+    return {"cartItems": cartItems, "order": order, "items": items}
+
 
 def cartData(request):
-
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -55,7 +55,8 @@ def cartData(request):
         order = cookieData['order']
         items = cookieData['items']
 
-    return {"cartItems": cartItems, "order":order, "items": items}
+    return {"cartItems": cartItems, "order": order, "items": items}
+
 
 def guestOrder(request, data):
     print('User is not logged in')

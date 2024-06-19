@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -6,11 +5,12 @@ import datetime
 import json
 
 from .models import *
-from .utils import cookieCart, cartData, guestOrder
+from .utils import cartData, guestOrder
 
-from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+
+
 def store(request):
     data = cartData(request)
 
@@ -20,6 +20,7 @@ def store(request):
     context = {'products': products, 'cartItems': cartItems}
     return render(request, 'store/store.html', context)
 
+
 def cart(request):
     data = cartData(request)
 
@@ -27,8 +28,9 @@ def cart(request):
     order = data['order']
     items = data['items']
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems }
+    context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/cart.html', context)
+
 
 def checkout(request):
     data = cartData(request)
@@ -37,7 +39,7 @@ def checkout(request):
     order = data['order']
     items = data['items']
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems }
+    context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/checkout.html', context)
 
 
@@ -67,9 +69,9 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
-#@csrf_exempt
+
 def processOrder(request):
-    transaction_id =datetime.datetime.now().timestamp()
+    transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
@@ -78,7 +80,6 @@ def processOrder(request):
 
     else:
         customer, order = guestOrder(request, data)
-
 
     total = float(data['form']['total'])
     order.transaction_id = transaction_id

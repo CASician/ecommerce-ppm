@@ -81,7 +81,7 @@
                 <a class="nav-link"> Hello {{ user }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a href="{% url 'add_product' %}">
+                <a href="{% url 'add_product' %}" id="add_item">
                 <button class="btn btn-info ml-5">Add Item</button>
                     </a>
             </li>
@@ -119,5 +119,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+<script type="text/javascript">
+    if (user == 'AnonymousUser'){
+            document.getElementById('add_item').innerHTML= ''
+    }
+</script>
 </body>
 </html>

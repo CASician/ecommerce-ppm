@@ -70,23 +70,28 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
+    <a class="navbar-brand" href="{% url 'store' %}">
+       <button class="btn btn-warning"> Orologiaio Matto </button>
+    </a>
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#"> Hello {{ user }} <span class="sr-only">(current)</span></a>
+                <a class="nav-link"> Hello {{ user }} <span class="sr-only">(current)</span></a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'product_search' %}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
         <div class="form-inline my-2 my-lg-0">
-            <a href="#" class="btn btn-warning">Login</a>
+            <a href="#" class="btn btn-warning ml-3">Login</a>
 
             <a href="{% url 'cart' %}">
                 <i class="fa-solid fa-cart-shopping fa-lg"></i>
             </a>
             <p id="cart-total">{{ cartItems }}</p>
-
         </div>
     </div>
 </nav>

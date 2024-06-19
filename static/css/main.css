@@ -11,10 +11,12 @@ h1,h2,h3,h4,h5,h6{
 	background-color: #fff;
 	border-radius: 4px;
 	padding: 10px;
+	min-width: 300px;
 }
 
 .thumbnail{
 	width: 100%;
+	min-width: 300px;
 	height: 200px;
 	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
     -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
@@ -123,4 +125,8 @@ h1,h2,h3,h4,h5,h6{
 
 .nav-item{
 	justify-content: space-between;
+}
+
+img {
+	display: flex;
 }

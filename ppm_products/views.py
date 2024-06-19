@@ -99,3 +99,23 @@ def processOrder(request):
         )
 
     return JsonResponse('Payment Complete', safe=False)
+
+
+def product_search(request):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+
+    context = {
+        'products': products,
+        'query': query,
+        'cartItems': cartItems
+    }
+
+    return render(request, 'store/store.html', context)

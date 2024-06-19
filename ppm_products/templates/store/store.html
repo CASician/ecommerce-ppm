@@ -12,26 +12,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <button class="btn my-btn">Smart</button>
+                        <button data-filter="Smart" class="btn my-btn">Smart</button>
                     </li>
                     <li class="nav-item active">
-                        <button class="btn my-btn">Digital</button>
+                        <button data-filter="Digital" class="btn my-btn">Digital</button>
                     </li>
                     <li class="nav-item active">
-                        <button class="btn my-btn">Analogic</button>
+                        <button data-filter="Analogic" class="btn my-btn">Analogic</button>
                     </li>
                      <li class="nav-item active">
-                        <button class="btn my-btn">Other</button>
-                    </li>
-                    <li class="nav-item active">
-                        <button class="btn my-btn">> $ 100</button>
-                    </li>
-                    <li class="nav-item active">
-                        <button class="btn my-btn">< $ 100</button>
+                        <button data-filter="Other" class="btn my-btn">Other</button>
                     </li>
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
-                    <a href="{% url 'store' %}" class="btn btn-warning">Remove filters</a>
+                    <button data-filter="all" class="btn btn-warning">Remove filters</button>
                 </div>
             </div>
         </nav>
@@ -41,11 +35,11 @@
 
 
 
-        <div class="row">
+        <div class="row mt-3">
             <!-- 3 PRODOTTI, PRIMA FILA -->
             {% for product in products %}
-                <div class="col-lg-4">
-                    <img class="thumbnail" src="{{ product.imageUrl }}"/>
+                <div class="col-lg-4 col-md-6 mb-4" data-category={{ product.category }}>
+                    <img class="thumbnail img-fluid" src="{{ product.imageUrl }}"/>
                     <div class="box-element product">
                         <h6><strong> {{ product.name }}</strong></h6>
                         <hr>
@@ -61,5 +55,32 @@
 
 
     </div>
+
+
+    <script type="text/javascript">
+        var items = document.querySelectorAll('[data-category]')
+        const buttons = document.querySelectorAll('button[data-filter]')
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+
+                    if (filter === 'all' || itemCategory === filter) {
+                        item.classList.remove('d-none');
+                    } else {
+                        item.classList.add('d-none');
+                    }
+                });
+
+                // Update button styles to reflect active filter
+                buttons.forEach(btn => btn.classList.remove('btn-primary'));
+                button.classList.add('btn-primary');
+            });
+        });
+
+    </script>
 
 {% endblock content %}

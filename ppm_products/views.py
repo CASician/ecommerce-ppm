@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 import datetime
@@ -6,6 +6,7 @@ import json
 
 from .models import *
 from .utils import cartData, guestOrder
+from .forms import ProductForm
 
 
 # Create your views here.
@@ -119,3 +120,18 @@ def product_search(request):
     }
 
     return render(request, 'store/store.html', context)
+
+
+def add_product(request):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('store')
+    else:
+        form = ProductForm()
+    return render(request, 'store/add_product.html', {'form': form, 'cartItems': cartItems})

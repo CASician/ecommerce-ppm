@@ -18,7 +18,7 @@
                         <button data-filter="Digital" class="btn my-btn">Digital</button>
                     </li>
                     <li class="nav-item active">
-                        <button data-filter="Analogic" class="btn my-btn">Analogic</button>
+                        <button data-filter="Analogical" class="btn my-btn">Analogical</button>
                     </li>
                      <li class="nav-item active">
                         <button data-filter="Other" class="btn my-btn">Other</button>
@@ -42,6 +42,7 @@
                     <img class="thumbnail img-fluid" src="{{ product.imageUrl }}"/>
                     <div class="box-element product">
                         <h6><strong> {{ product.name }}</strong></h6>
+                        <p class="cat-display"> #{{ product.category }}</p>
                         <hr>
 
                         <button data-product={{ product.id }} data-action="add" class="btn btn-outline-success add-btn update-cart">Add to Cart</button>

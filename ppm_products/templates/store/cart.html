@@ -13,7 +13,7 @@
                         <th><h5>Items: <strong>{{ order.get_cart_items }}</strong></h5></th>
                         <th><h5>Total:<strong> ${{ order.get_cart_total|floatformat:2 }}</strong></h5></th>
                         <th>
-                            <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+                            <a  style="float:right; margin:5px;" class="btn btn-success" id="checkout-btn" href="{% url 'checkout' %}">Checkout</a>
                         </th>
                     </tr>
                 </table>
@@ -39,9 +39,9 @@
                     <div style="flex:1">
                         <p class="quantity">{{ item.quantity }}</p>
                         <div class="quantity">
-                            <img data-product={{ item.product.id }} data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+                            <i data-product={{ item.product.id }} data-action="add" class="fa-regular fa-square-plus fa-lg chg-quantity update-cart"></i>
 
-                            <img data-product={{ item.product.id }} data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+                            <i data-product={{ item.product.id }} data-action="remove" class="fa-regular fa-square-minus fa-lg chg-quantity update-cart ml-1"></i>
                         </div>
                     </div>
                     <div style="flex:1"><p>$ {{ item.get_total|floatformat:2 }}</p></div>
@@ -52,4 +52,10 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+    var items = '{{ order.get_cart_items }}'
+    if (items == 0){
+        document.getElementById('checkout-btn').classList.add('hidden');
+    }
+    </script>
 {% endblock content %}

@@ -68,7 +68,7 @@
                 items.forEach(item => {
                     const itemCategory = item.getAttribute('data-category');
 
-                    if (filter === 'all' || itemCategory === filter) {
+                    if (filter == 'all' || itemCategory == filter) {
                         item.classList.remove('d-none');
                     } else {
                         item.classList.add('d-none');

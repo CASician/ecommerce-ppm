@@ -71,19 +71,23 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'store' %}">
-       <button class="btn btn-warning"> Orologiaio Matto </button>
+        <button class="btn btn-warning"> Orologiaio Matto </button>
     </a>
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link"> Hello {{ user }} <span class="sr-only">(current)</span></a>
+                {% if user.is_authenticated %}
+                    <a class="nav-link">Welcome, {{ user }}!</a>
+                {% else %}
+                    <a class="nav-link">You are not logged in.</a>
+                {% endif %}
             </li>
             <li class="nav-item active">
                 <a href="{% url 'add_product' %}" id="add_item">
-                <button class="btn btn-info ml-5">Add Item</button>
-                    </a>
+                    <button class="btn btn-info ml-5">Add Item</button>
+                </a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'product_search' %}">
@@ -91,7 +95,8 @@
             <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <div class="form-inline my-2 my-lg-0">
-            <a href="#" class="btn btn-warning ml-3">Login</a>
+            <a href="{% url 'login' %}" class="btn btn-warning ml-3" id="login">Login</a>
+            <a href="{% url 'logout' %}" class="btn btn-secondary ml-3" id="logout">Logout</a>
 
             <a href="{% url 'cart' %}">
                 <i class="fa-solid fa-cart-shopping fa-lg"></i>
@@ -122,7 +127,12 @@
 
 <script type="text/javascript">
     if (user == 'AnonymousUser'){
-            document.getElementById('add_item').innerHTML= ''
+        document.getElementById('add_item').innerHTML= ''
+        document.getElementById('logout').classList.add('hidden')
+    }
+    if (user != 'AnonymousUser'){
+        document.getElementById('login').classList.add('hidden')
+        document.getElementById('logout').classList.remove('hidden')
     }
 </script>
 </body>

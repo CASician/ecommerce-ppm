@@ -52,3 +52,5 @@ wheel==0.43.0
 zope.interface==6.4.post2
 
 pathlib~=1.0.1
+whitenoise==6.2.0
+Brotli==1.0.9

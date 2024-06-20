@@ -100,6 +100,7 @@ gitdb @ file:///tmp/build/80754af9/gitdb_1617117951232/work
 GitPython @ file:///croot/gitpython_1696936983078/work
 gmpy2 @ file:///work/ci_py311/gmpy2_1676839849213/work
 greenlet @ file:///croot/greenlet_1702059959679/work
+gunicorn==22.0.0
 h5py @ file:///croot/h5py_1691589708553/work
 HeapDict @ file:///Users/ktietz/demo/mc3/conda-bld/heapdict_1630598515714/work
 holoviews @ file:///croot/holoviews_1707836454244/work

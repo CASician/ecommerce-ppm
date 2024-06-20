@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 import dj_database_url
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-(%m7wo(=zn$iftl1#*+o9**yaaht55&rwa2#2%bgh=%vu!64r$")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False")
+DEBUG = os.environ.get('DEBUG', 'False')
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split(" ")
 
@@ -81,8 +84,10 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL", "postgres://orologiaio_postgresql_matto_user:qcnxomvMSDATnd81HKv8wkgzlAWH11QG@dpg-cppgfgtds78s73e8ek9g-a.frankfurt-postgres.render.com/orologiaio_postgresql_matto")
-DATABASES["default"] = dj_database_url.parse(database_url)
+if DEBUG == 'False':
+    database_url = os.environ.get("DATABASE_URL", "postgres://orologiaio_postgresql_matto_user:qcnxomvMSDATnd81HKv8wkgzlAWH11QG@dpg-cppgfgtds78s73e8ek9g-a.frankfurt-postgres.render.com/orologiaio_postgresql_matto")
+    DATABASES["default"] = dj_database_url.parse(database_url)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

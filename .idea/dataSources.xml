@@ -16,5 +16,12 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="orologiaio_postgresql_matto" uuid="1735ec5c-7b2c-4e96-95e7-e20057f25995">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://dpg-cppgfgtds78s73e8ek9g-a.frankfurt-postgres.render.com:5432/orologiaio_postgresql_matto</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
